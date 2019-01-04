@@ -1,15 +1,13 @@
 import Link from 'next/link';
+import Layout from '../components/Layout';
 
 
 
 const Index = props => {
     return (
-        <div>index
-        
-        <Link href="home">
-            <a>Home Page</a>
-        </Link>
-        </div>
+        <Layout>
+            test index
+        </Layout>
     )
 }
 export default Index;

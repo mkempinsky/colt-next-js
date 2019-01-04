@@ -1,14 +1,14 @@
 import React from 'react';
 import Layout from '../components/Layout';
-class Home extends React.Component {
+class About extends React.Component {
     render(){
         return (
             <div>
                 <Layout>
-                    Home page
-                </Layout>
+                    hello from About page    
+                </Layout> 
             </div>
         )
     }
 }
-export default Home;
+export default About;
