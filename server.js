@@ -30,7 +30,7 @@ app.prepare()
             }
         });
 
-        require('./routes')(server, app);
+        require('./routes/pages')(server, app);
 
         /**
          * WP Admin

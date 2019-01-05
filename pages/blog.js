@@ -4,7 +4,7 @@ import fetch from '../lib/fetch';
 import {getProp} from '../lib/utils';
 class Blog extends React.Component {
     static async getInitialProps(context) {
-        const url = `/wordpress-api/posts?&categories=${process.env.BLOG_CATEGORY_ID}`;
+        const url = `/wordpress-api/posts?`;
         console.log('URL', url);
         let response = {};
         let data = [];
