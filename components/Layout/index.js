@@ -1,10 +1,13 @@
 import Nav from '../Nav';
+import MaxWidth from '../MaxWidth';
 const Layout = props => {
     return (
         <div>
-            <Nav/>
-            {props.children}
+            <Nav />
+            <div>
+                <MaxWidth>{props.children}</MaxWidth>
+            </div>
         </div>
-    )
-}
+    );
+};
 export default Layout;

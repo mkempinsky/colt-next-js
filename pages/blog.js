@@ -1,11 +1,13 @@
 import React from 'react';
 import Layout from '../components/Layout';
+import BlogCard from '../components/BlogCard';
 import fetch from '../lib/fetch';
 import {getProp} from '../lib/utils';
+import {BREAKPOINT} from '../lib/styles';
 class Blog extends React.Component {
     static async getInitialProps(context) {
-        const url = `/wordpress-api/posts?`;
-        console.log('URL', url);
+        // only get post with blog category
+        const url = `/wordpress-api/posts?categories=22&_embed`;
         let response = {};
         let data = [];
 
@@ -16,26 +18,55 @@ class Blog extends React.Component {
             console.warn(e);
             return {data: [], error: e};
         }
-        return {data}
+        return {data};
     }
 
-    render(){
+    render() {
         const data = getProp(this.props, 'data');
-        console.log(data);
+        console.log('data', data);
         return (
             <div>
                 <Layout>
-                    {data && data.map(item => {
-                        const title = getProp(item, 'title.rendered');
-                        return (
-                            <div key={title}>
-                                <h3 dangerouslySetInnerHTML={{__html: title}}/>
-                            </div>
-                        )
-                    })}
-                </Layout> 
+                    <h2>Blog Posts</h2>
+                    <div className="blog-container">
+                        {data &&
+                            data.map(item => {
+                                const title = getProp(item, 'title.rendered');
+                                const imgUrl = getProp(
+                                    item,
+                                    '_embedded.wp:featuredmedia[0].source_url'
+                                );
+                                const excerpt = getProp(item, 'content.rendered').slice(
+                                    0,
+                                    200
+                                );
+                                const slug = getProp(item, 'slug');
+                                return (
+                                    <BlogCard
+                                        key={title}
+                                        title={title}
+                                        imgUrl={imgUrl}
+                                        excerpt={excerpt}
+                                        slug={slug}
+                                    />
+                                );
+                            })}
+                    </div>
+                </Layout>
+                <style jsx>{`
+                    .blog-container {
+                        display: block;
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .blog-container {
+                            display: flex;
+                            flex-flow: row wrap;
+                            justify-content: space-around;
+                        }
+                    }
+                `}</style>
             </div>
-        )
+        );
     }
 }
 export default Blog;
