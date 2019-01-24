@@ -12,10 +12,6 @@ export default class Document extends Document_ {
                         name="viewport"
                         content="width=device-width, initial-scale=1, minimal-ui"
                     />
-                    <link
-                        href="https://fonts.googleapis.com/css?family=Abel"
-                        rel="stylesheet"
-                    />
                     <link rel="icon" href="/static/icon.png" />
                     <style>{globalStyles}</style>
                 </Head>

@@ -1,12 +1,10 @@
 import React from 'react';
-import Layout from '../components/Layout';
-import BlogCard from '../components/BlogCard';
 import fetch from '../lib/fetch';
 import {getProp} from '../lib/utils';
-import {BREAKPOINT} from '../lib/styles';
+import Layout from '../components/Layout';
 class Blog extends React.Component {
     static async getInitialProps(context) {
-        // only get post with blog category
+        // get blog posts from wp api
         const url = `/wordpress-api/posts?categories=22&_embed`;
         let response = {};
         let data = [];
@@ -32,23 +30,14 @@ class Blog extends React.Component {
                         {data &&
                             data.map(item => {
                                 const title = getProp(item, 'title.rendered');
-                                const imgUrl = getProp(
-                                    item,
-                                    '_embedded.wp:featuredmedia[0].source_url'
-                                );
-                                const excerpt = getProp(item, 'content.rendered').slice(
-                                    0,
-                                    200
-                                );
-                                const slug = getProp(item, 'slug');
+                                const content = getProp(item, 'content.rendered');
                                 return (
-                                    <BlogCard
-                                        key={title}
-                                        title={title}
-                                        imgUrl={imgUrl}
-                                        excerpt={excerpt}
-                                        slug={slug}
-                                    />
+                                    <div>
+                                        <h2 dangerouslySetInnerHTML={{__html: title}} />
+                                        <div
+                                            dangerouslySetInnerHTML={{__html: content}}
+                                        />
+                                    </div>
                                 );
                             })}
                     </div>
@@ -56,13 +45,6 @@ class Blog extends React.Component {
                 <style jsx>{`
                     .blog-container {
                         display: block;
-                    }
-                    @media screen and (min-width: ${BREAKPOINT}) {
-                        .blog-container {
-                            display: flex;
-                            flex-flow: row wrap;
-                            justify-content: space-around;
-                        }
                     }
                 `}</style>
             </div>
