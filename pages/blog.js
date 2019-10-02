@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 class Blog extends React.Component {
     static async getInitialProps(context) {
         // get blog posts from wp api
-        const url = `/wordpress-api/posts?categories=22&_embed`;
+        const url = `http://admin.coltkempinsky.com/wp-json/wp/v2/`;
         let response = {};
         let data = [];
 
