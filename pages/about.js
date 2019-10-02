@@ -4,7 +4,17 @@ class About extends React.Component {
     render() {
         return (
             <div>
-                <Layout>hello from About page</Layout>
+                <Layout>
+                    <div className="content">hello from about page</div>
+                </Layout>
+                <style jsx>{`
+                    .content {
+                        background: #fff;
+                        margin-top: 150px;
+                        padding: 30px;
+                        min-height: 300px;
+                    }
+                `}</style>
             </div>
         );
     }
