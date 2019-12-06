@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+    install:
+        runtime-versions:
+            nodejs: 10
+        commands:
+            - echo Installing puppeteer dependencies
+            - apt update --fix-missing
+            - echo Installing node modules...
+            - npm install --production
+    build:
+        commands:
+            - echo Building application...
+            - npm run build
+    post_build:
+        commands:
+            - npm run awstest
+
+artifacts:
+    files:
+        - '**/*'
