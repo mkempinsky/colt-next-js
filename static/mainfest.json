@@ -1,0 +1,10 @@
+{
+    "short_name": "CK",
+    "name": "Colt Kempinsky",
+    "icons": [],
+    "start_url": "./",
+    "background_color": "#fff",
+    "theme_color": "#337FBD",
+    "display": "standalone",
+    "orientation": "portrait"
+}
